@@ -36,6 +36,23 @@ export const Current = styled.div`
   }
 `;
 
+export const Scrubber = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+export const Controls = styled.div`
+  display: flex;
+  align-items: center;
+
+  button {
+    background: transparent;
+    border: 0;
+    margin: 0 15px;
+  }
+`;
+
 export const Volume = styled.div`
   display: flex;
   align-items: center;
