@@ -7,7 +7,7 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
 
-  height, body, #root {
+  html, body, #root, .App {
     height: 100%;
   }
 
@@ -16,6 +16,7 @@ const GlobalStyle = createGlobalStyle`
     -webkit-font-smoothing: antialiased !important;
     background: #181818;
     font-family: 'Montserrat', sans-serif;
+    color: #fff;
   }
 `;
 
