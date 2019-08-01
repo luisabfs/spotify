@@ -2,7 +2,7 @@ import React from 'react';
 
 import Slider from 'rc-slider';
 import {
-  Container, Current, Volume, Scrubber, Controls,
+  Container, Current, Volume, Scrubber, Controls, Time, ProgressSlider,
 } from './styles';
 
 import VolumeIcon from '../../assets/images/volume.svg';
@@ -42,6 +42,17 @@ const Player = () => (
           <img src={RepeatIcon} alt="Repeat" />
         </button>
       </Controls>
+      <Time>
+        <span>1:32</span>
+        <ProgressSlider>
+          <Slider
+            railStyle={{ background: '#404040', borderRadius: 10 }}
+            trackStyle={{ background: '#1ED760' }}
+            handleStyle={{ border: 0 }}
+          />
+        </ProgressSlider>
+        <span>4:30</span>
+      </Time>
     </Scrubber>
 
     <Volume>
@@ -50,7 +61,7 @@ const Player = () => (
         railStyle={{ background: '#404040', borderRadius: 10 }}
         trackStyle={{ background: '#fff' }}
         handleStyle={{ display: 'none' }}
-        // value={100}
+        value={100}
       />
     </Volume>
   </Container>
