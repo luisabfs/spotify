@@ -1,10 +1,23 @@
 import React from 'react';
 
-import { Container } from './styles';
+import { Container, Current, Volume } from './styles';
+
+import VolumeIcon from '../../assets/images/volume.svg';
 
 const Player = () => (
   <Container>
-    <h1>Player</h1>
+    <Current>
+      <img src="https://i.redd.it/3z8xam8wpo9y.png" alt="Album" />
+
+      <div>
+        <span>Stressed Out</span>
+        <small>Twenty One Pilots</small>
+      </div>
+    </Current>
+
+    <Volume>
+      <img src={VolumeIcon} alt="Volume" />
+    </Volume>
   </Container>
 );
 
