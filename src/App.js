@@ -12,17 +12,19 @@ import Routes from './routes';
 
 const App = () => (
   <BrowserRouter>
-    <GlobalStyle />
-    <Wrapper>
-      <Container>
-        <Sidebar />
-        <Content>
-          <Header />
-          <Routes />
-        </Content>
-      </Container>
-      <Player />
-    </Wrapper>
+    <div className="App">
+      <GlobalStyle />
+      <Wrapper>
+        <Container>
+          <Sidebar />
+          <Content>
+            <Header />
+            <Routes />
+          </Content>
+        </Container>
+        <Player />
+      </Wrapper>
+    </div>
   </BrowserRouter>
 );
 
