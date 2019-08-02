@@ -51,10 +51,16 @@ const Sidebar = () => (
           <span>PLAYLISTS</span>
         </li>
         <li>
-          <a href="">Focusing</a>
+          <a href="">Having fun!</a>
         </li>
         <li>
-          <a href="">Having fun!</a>
+          <a href="">Emo</a>
+        </li>
+        <li>
+          <a href="">Sad time</a>
+        </li>
+        <li>
+          <a href="">Classic Rock</a>
         </li>
       </Nav>
     </div>
