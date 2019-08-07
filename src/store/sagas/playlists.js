@@ -7,7 +7,7 @@ export function* getPlaylists() {
   try {
     const response = yield call(api.get, '/playlists');
 
-    yield put(PlaylistsActions.getPlaylistSuccess(response.data));
+    yield put(PlaylistsActions.getPlaylistsSuccess(response.data));
   } catch (err) {
     console.log(err);
   }
