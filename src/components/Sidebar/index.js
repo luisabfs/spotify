@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import { connect } from 'react-redux';
@@ -10,20 +11,34 @@ import { Container, NewPlaylist, Nav } from './styles';
 import AddPlaylistIcon from '../../assets/images/add_playlist.svg';
 
 class Sidebar extends Component {
+  static propTypes = {
+    getPlaylistsRequest: PropTypes.func.isRequired,
+    playlists: PropTypes.shape({
+      data: PropTypes.arrayOf(
+        PropTypes.shape({
+          id: PropTypes.number,
+          title: PropTypes.string,
+        }),
+      ),
+    }).isRequired,
+  };
+
   componentDidMount() {
     this.props.getPlaylistsRequest();
   }
 
   render() {
+    const { playlists } = this.props;
+
     return (
       <Container>
         <div>
           <Nav main>
             <li>
-              <a href="">Browse</a>
+              <a href="/">Browse</a>
             </li>
             <li>
-              <a href="">Radio</a>
+              <a href="/">Radio</a>
             </li>
           </Nav>
 
@@ -32,28 +47,28 @@ class Sidebar extends Component {
               <span>YOUR LIBRARY</span>
             </li>
             <li>
-              <a href="">Your Daily Mix</a>
+              <a href="/">Your Daily Mix</a>
             </li>
             <li>
-              <a href="">Recently played</a>
+              <a href="/">Recently played</a>
             </li>
             <li>
-              <a href="">Songs</a>
+              <a href="/">Songs</a>
             </li>
             <li>
-              <a href="">Albums</a>
+              <a href="/">Albums</a>
             </li>
             <li>
-              <a href="">Artists</a>
+              <a href="/">Artists</a>
             </li>
             <li>
-              <a href="">Stations</a>
+              <a href="/">Stations</a>
             </li>
             <li>
-              <a href="">Videos</a>
+              <a href="/">Videos</a>
             </li>
             <li>
-              <a href="">Podcasts</a>
+              <a href="//">Podcasts</a>
             </li>
           </Nav>
 
@@ -61,7 +76,7 @@ class Sidebar extends Component {
             <li>
               <span>PLAYLISTS</span>
             </li>
-            {this.props.playlists.data.map(playlist => (
+            {playlists.data.map(playlist => (
               <li key={playlist.id}>
                 <Link to={`playlists/${playlist.id}`}>{playlist.title}</Link>
               </li>
