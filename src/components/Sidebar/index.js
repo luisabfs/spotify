@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -60,18 +61,11 @@ class Sidebar extends Component {
             <li>
               <span>PLAYLISTS</span>
             </li>
-            <li>
-              <a href="">Having fun!</a>
-            </li>
-            <li>
-              <a href="">Emo</a>
-            </li>
-            <li>
-              <a href="">Sad time</a>
-            </li>
-            <li>
-              <a href="">Classic Rock</a>
-            </li>
+            {this.props.playlists.data.map(playlist => (
+              <li key={playlist.id}>
+                <Link to={`playlists/${playlist.id}`}>{playlist.title}</Link>
+              </li>
+            ))}
           </Nav>
         </div>
 
