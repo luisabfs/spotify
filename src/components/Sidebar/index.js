@@ -24,7 +24,8 @@ class Sidebar extends Component {
   };
 
   componentDidMount() {
-    this.props.getPlaylistsRequest();
+    const { getPlaylistsRequest } = this.props;
+    getPlaylistsRequest();
   }
 
   render() {
@@ -35,10 +36,10 @@ class Sidebar extends Component {
         <div>
           <Nav main>
             <li>
-              <a href="/">Browse</a>
+              <Link to="/">Browse</Link>
             </li>
             <li>
-              <a href="/">Radio</a>
+              <Link to="/">Radio</Link>
             </li>
           </Nav>
 
@@ -47,28 +48,28 @@ class Sidebar extends Component {
               <span>YOUR LIBRARY</span>
             </li>
             <li>
-              <a href="/">Your Daily Mix</a>
+              <Link to="/">Your Daily Mix</Link>
             </li>
             <li>
-              <a href="/">Recently played</a>
+              <Link to="/">Recently played</Link>
             </li>
             <li>
-              <a href="/">Songs</a>
+              <Link to="/">Songs</Link>
             </li>
             <li>
-              <a href="/">Albums</a>
+              <Link to="/">Albums</Link>
             </li>
             <li>
-              <a href="/">Artists</a>
+              <Link to="/">Artists</Link>
             </li>
             <li>
-              <a href="/">Stations</a>
+              <Link to="/">Stations</Link>
             </li>
             <li>
-              <a href="/">Videos</a>
+              <Link to="/">Videos</Link>
             </li>
             <li>
-              <a href="//">Podcasts</a>
+              <Link to="/">Podcasts</Link>
             </li>
           </Nav>
 
