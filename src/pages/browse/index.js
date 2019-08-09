@@ -1,45 +1,62 @@
-import React from 'react';
+import React, { Component } from 'react';
+
+import PropTypes from 'prop-types';
+
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { Creators as PlaylistsActions } from '../../store/ducks/playlists';
 
 import {
   Container, Title, List, Playlist,
 } from './styles';
 
-const Browse = () => (
-  <Container>
-    <Title>Browse</Title>
+class Browse extends Component {
+  static propTypes = {
+    getPlaylistsRequest: PropTypes.func.isRequired,
+    playlists: PropTypes.shape({
+      data: PropTypes.arrayOf(
+        PropTypes.shape({
+          id: PropTypes.number,
+          title: PropTypes.string,
+          thumbnail: PropTypes.string,
+          description: PropTypes.string,
+        }),
+      ),
+    }).isRequired,
+  };
 
-    <List>
-      <Playlist to="/playlists/1">
-        <img src="https://i.redd.it/3z8xam8wpo9y.png" alt="Playlist" />
-        <strong>Having fun!</strong>
-        <p>For enjoying some good music while coding!</p>
-      </Playlist>
-      <Playlist to="/playlists/1">
-        <img
-          src="https://www.billboard.com/files/styles/900_wide/public/media/Green-Day-American-Idiot-album-covers-billboard-1000x1000.jpg"
-          alt="Playlist"
-        />
-        <strong>Emo</strong>
-        <p>Make emo great again.</p>
-      </Playlist>
-      <Playlist to="/playlists/1">
-        <img
-          src="https://www.billboard.com/files/styles/900_wide/public/media/Joy-Division-Unknown-Pleasures-album-covers-billboard-1000x1000.jpg"
-          alt="Playlist"
-        />
-        <strong>Sad time</strong>
-        <p>When feeling lonely and kinda sad :/</p>
-      </Playlist>
-      <Playlist to="/playlists/1">
-        <img
-          src="https://www.udiscovermusic.com/wp-content/uploads/2018/04/queen-ii.jpg"
-          alt="Playlist"
-        />
-        <strong>Classic Rock</strong>
-        <p>Relax with the best rock songs!</p>
-      </Playlist>
-    </List>
-  </Container>
-);
+  componentDidMount() {
+    const { getPlaylistsRequest } = this.props;
+    getPlaylistsRequest();
+  }
 
-export default Browse;
+  render() {
+    const { playlists } = this.props;
+    return (
+      <Container>
+        <Title>Browse</Title>
+
+        <List>
+          {playlists.data.map(playlist => (
+            <Playlist key={playlist.id} to={`/playlists/${playlist.id}`}>
+              <img src={playlist.thumbnail} alt={playlist.title} />
+              <strong>{playlist.title}</strong>
+              <p>{playlist.description}</p>
+            </Playlist>
+          ))}
+        </List>
+      </Container>
+    );
+  }
+}
+
+const mapStateToProps = state => ({
+  playlists: state.playlists,
+});
+
+const mapDispatchToProps = dispatch => bindActionCreators(PlaylistsActions, dispatch);
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Browse);
