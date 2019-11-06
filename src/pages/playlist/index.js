@@ -34,45 +34,57 @@ class Playlist extends Component {
     getPlaylistDetailsRequest(id);
   };
 
-  renderDetails = () => (
-    <Container>
-      <Header>
-        <img src="https://i.redd.it/3z8xam8wpo9y.png" alt="Playlist" />
+  renderDetails = () => {
+    const playlist = this.props.playlistDetails.data;
 
-        <div>
-          <span>PLAYLIST</span>
-          <h1>Having fun!</h1>
-          <p>13 musics</p>
+    return (
+      <Container>
+        <Header>
+          <img src={playlist.thumbnail} alt={playlist.title} />
 
-          <button>PLAY</button>
-        </div>
-      </Header>
+          <div>
+            <span>PLAYLIST</span>
+            <h1>{playlist.title}</h1>
+            {!!playlist.songs && <p>?{playlist.songs.length} musics</p>}
 
-      <SongList cellPadding={0} cellSpacing={0}>
-        <thead>
-          <th />
-          <th>Title</th>
-          <th>Artist</th>
-          <th>Album</th>
-          <th>
-            <img src={ClockIcon} alt="Duration" />
-          </th>
-        </thead>
+            <button>PLAY</button>
+          </div>
+        </Header>
 
-        <tbody>
-          <tr>
-            <td>
-              <img src={PlusIcon} alt="Add" />
-            </td>
-            <td>Stressed Out</td>
-            <td>Twenty One Pilots</td>
-            <td>Blurryface</td>
-            <td>3:22</td>
-          </tr>
-        </tbody>
-      </SongList>
-    </Container>
-  );
+        <SongList cellPadding={0} cellSpacing={0}>
+          <thead>
+            <th />
+            <th>Title</th>
+            <th>Artist</th>
+            <th>Album</th>
+            <th>
+              <img src={ClockIcon} alt="Duration" />
+            </th>
+          </thead>
+
+          <tbody>
+            {!playlist.songs ? (
+              <tr>
+                <td colSpan={5}>No songs added</td>
+              </tr>
+            ) : (
+              playlist.songs.map(song => (
+                <tr key={song.id}>
+                  <td>
+                    <img src={PlusIcon} alt="Add" />
+                  </td>
+                  <td>{song.title}</td>
+                  <td>{song.author}</td>
+                  <td>{song.album}</td>
+                  <td>3:22</td>
+                </tr>
+              ))
+            )}
+          </tbody>
+        </SongList>
+      </Container>
+    );
+  };
 
   render() {
     const { playlistDetails } = this.props;
